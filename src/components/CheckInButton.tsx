@@ -1,24 +1,42 @@
 import React from 'react';
-import { useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
+import { useSendTransaction, useWaitForTransactionReceipt, useAccount } from 'wagmi';
 import { CHECK_IN_CONTRACT_ADDRESS, CHECK_IN_ABI } from '../lib/web3';
 import { motion } from 'motion/react';
 import { Loader2, Zap, ShieldCheck } from 'lucide-react';
+import { encodeFunctionData } from 'viem';
 
 export const CheckInButton: React.FC = () => {
   const { isConnected, address, chain } = useAccount();
-  const { writeContract, data: hash, isPending, error } = useWriteContract();
+  const { sendTransaction, data: hash, isPending, error } = useSendTransaction();
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash });
+
+  // Base Builder Code: bc_jjidt7s3
+  // Hex representation: 62635f6a6a6a696474377333
+  const BUILDER_CODE_SUFFIX = '62635f6a6a6a696474377333';
 
   const handleCheckIn = async () => {
     if (!isConnected || !address || !chain) return;
     
-    writeContract({
-      address: CHECK_IN_CONTRACT_ADDRESS as `0x${string}`,
-      abi: CHECK_IN_ABI,
-      functionName: 'checkIn',
-      chain: chain,
-      account: address,
-    });
+    try {
+      // 1. Encode the function data using ABI
+      const baseData = encodeFunctionData({
+        abi: CHECK_IN_ABI,
+        functionName: 'checkIn',
+      });
+
+      // 2. Append the builder code suffix
+      const attributedData = `${baseData}${BUILDER_CODE_SUFFIX}` as `0x${string}`;
+
+      // 3. Send the attributed transaction
+      sendTransaction({
+        to: CHECK_IN_CONTRACT_ADDRESS as `0x${string}`,
+        data: attributedData,
+        chain: chain,
+        account: address,
+      });
+    } catch (err) {
+      console.error('Failed to encode/send attributed transaction:', err);
+    }
   };
 
   if (!isConnected) return null;
