@@ -71,9 +71,14 @@ export const CheckInButton: React.FC = () => {
       </motion.button>
 
       {error && (
-        <p className="text-[10px] text-white font-bold max-w-[200px] text-center uppercase tracking-tighter opacity-60">
-          {error.message.includes('User rejected') ? 'Transaction rejected' : 'Error checking in. Ensure you have gas on Base.'}
-        </p>
+        <div className="flex flex-col items-center gap-1">
+          <p className="text-[10px] text-white font-bold max-w-[200px] text-center uppercase tracking-tighter opacity-60">
+            {error.message.includes('User rejected') ? 'Transaction rejected' : 'Error checking in.'}
+          </p>
+          <p className="text-[8px] text-red-300 font-mono opacity-50 break-all max-w-[200px] text-center">
+            {error.message.substring(0, 100)}...
+          </p>
+        </div>
       )}
       
       {isSuccess && (
