@@ -1,0 +1,15 @@
+{
+  "accountAssociation": {
+    "header": "PASTE_YOUR_HEADER_HERE",
+    "payload": "PASTE_YOUR_PAYLOAD_HERE",
+    "signature": "PASTE_YOUR_SIGNATURE_HERE"
+  },
+  "frame": {
+    "version": "1",
+    "name": "Quick Poll Artist",
+    "iconUrl": "https://quick-poll-artis.vercel.app/icon.png",
+    "splashImageUrl": "https://quick-poll-artis.vercel.app/splash.png",
+    "splashBackgroundColor": "#050505",
+    "homeUrl": "https://quick-poll-artis.vercel.app"
+  }
+}
