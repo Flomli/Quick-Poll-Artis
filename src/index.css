@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-[#050505] text-white;
+  }
+}
+
+.theme-bold-typography {
+  --app-bg: #050505;
+  --app-text: #FFFFFF;
+  --app-accent: #0052FF;
+  --app-secondary: #FF00E5;
+  --app-cyan: #00F0FF;
+  --card-bg: #111111;
+  --card-border: rgba(255, 255, 255, 0.1);
+}
+
+.theme-neon {
+  --app-bg: #030712;
+  --app-text: #f9fafb;
+  --app-accent: #10b981;
+  --app-secondary: #8b5cf6;
+  --card-bg: rgba(17, 24, 39, 0.7);
+  --card-border: rgba(16, 185, 129, 0.3);
+}
+
+@layer components {
+  .bg-app { background-color: var(--app-bg); }
+  .text-app { color: var(--app-text); }
+  .accent-app { color: var(--app-accent); }
+  .bg-card-app { background-color: var(--card-bg); }
+  .border-app { border-color: var(--card-border); }
+  
+  .bold-headline {
+    @apply text-[80px] font-[900] leading-[0.9] tracking-[-4px] uppercase;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
