@@ -13,7 +13,7 @@ export const config = createConfig({
 
 // Builder Codes Check-in Contract (Commonly used by developers on Base)
 // Note: This is a placeholder, users can update it with the official contract per documentation
-export const CHECK_IN_CONTRACT_ADDRESS = '0x60011D447e17D831F413c60521eC636a8E021966';
+export const CHECK_IN_CONTRACT_ADDRESS = '0x14D3DcD2667a32D3B411930C2dA77C10b987eceE';
 
 export const CHECK_IN_ABI = [
   {
